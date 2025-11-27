@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Órdenes de Compra</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Matriz de Aseo</h1>
+
+        <!-- Pestañas -->
+        <div class="tabs">
+            <button class="tab-button active" data-tab="tab1">Crear Ordenes de Compra</button>
+            <button class="tab-button" data-tab="tab2">Ordenes de Compra</button>
+            <button class="tab-button" data-tab="tab3">Facturación</button>
+            <button class="tab-button" data-tab="tab4">Observaciones</button>
+        </div>
+
+        <div class="tab-content">
+
+            <!-- TAB 1 -->
+            <div id="tab1" class="tab-pane active">
+
+                <!-- Sección Periodo -->
+                <div class="form-section periodo-section">
+                    <label class="section-label">Periodo</label>
+                    <div class="periodo-select-container">
+                        <select id="periodoSelect" name="periodoSelect" class="periodo-select" required>
+                            <option value="">Seleccione un período</option>
+                            <option value="2024-2025">2024-2025</option>
+                            <option value="2025-2026">2025-2026</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- FORMULARIO -->
+                <form id="ordenCompraForm" novalidate autocomplete="off">
+                    <div class="form-grid">
+
+                        <!-- Datos básicos -->
+                        <div class="form-group">
+                            <label for="ordenCompra">Orden de Compra</label>
+                            <input type="text" id="ordenCompra" name="ordenCompra" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="zona">Zona</label>
+                            <input type="text" id="zona" name="zona" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nit">NIT</label>
+                            <input type="text" id="nit" name="nit" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="territorial">Territorial</label>
+                            <input type="text" id="territorial" name="territorial" required>
+                        </div>
+
+                        <!-- Fechas -->
+                        <div class="form-group">
+                            <label for="fechaInicio">Fecha de Inicio</label>
+                            <input type="date" id="fechaInicio" name="fechaInicio" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fechaTerminacion">Fecha de Terminación</label>
+                            <input type="date" id="fechaTerminacion" name="fechaTerminacion" required>
+                        </div>
+
+                        <!-- Objeto -->
+                        <div class="form-group full-width">
+                            <label for="objeto">Objeto</label>
+                            <textarea id="objeto" name="objeto" rows="3" required></textarea>
+                        </div>
+
+                        <!-- Proveedor - Supervisor - Apoyo -->
+                        <div class="three-columns full-width">
+                            <div class="form-group">
+                                <label for="proveedor">Proveedor</label>
+                                <input type="text" id="proveedor" name="proveedor" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="supervisor">Supervisor</label>
+                                <input type="text" id="supervisor" name="supervisor" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apoyoSupervision">Apoyo a la Supervisión</label>
+                                <input type="text" id="apoyoSupervision" name="apoyoSupervision" required>
+                            </div>
+                        </div>
+
+                        <!-- Link -->
+                        <div class="form-group full-width">
+                            <label for="linkColombiaCompra">Link de Colombia Compra</label>
+                            <input type="url" id="linkColombiaCompra" name="linkColombiaCompra" required>
+                        </div>
+                    </div>
+
+                    <!-- Mensaje de estado -->
+                    <div id="estadoEnvio" class="estado-envio"></div>
+
+                    <div class="form-actions">
+                        <button type="button" id="btnRegistrar" class="btn-registrar">Registrar</button>
+                        <button type="button" id="btnLimpiar" class="btn-limpiar-form">Limpiar Formulario</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <!-- TAB 2 -->
+            <div id="tab2" class="tab-pane">
+                <h2>Órdenes de Compra</h2>
+                <p>(En una siguiente fase podemos cargar dinámicamente las órdenes desde SharePoint/Excel)</p>
+            </div>
+
+            <!-- TAB 3 -->
+            <div id="tab3" class="tab-pane">
+                <h2>Facturación</h2>
+            </div>
+
+            <!-- TAB 4 -->
+            <div id="tab4" class="tab-pane">
+                <h2>Observaciones</h2>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
