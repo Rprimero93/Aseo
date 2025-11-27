@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Órdenes de Compra</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Matriz de Aseo - Órdenes de Compra</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
-
 <body>
-
     <div class="container">
         <h1>Matriz de Aseo</h1>
 
         <!-- Pestañas -->
-        <div class="tabs">
-            <button class="tab-button active" data-tab="tab1">Crear Ordenes de Compra</button>
-            <button class="tab-button" data-tab="tab2">Ordenes de Compra</button>
-            <button class="tab-button" data-tab="tab3">Facturación</button>
-            <button class="tab-button" data-tab="tab4">Observaciones</button>
+        <div class="tabs" role="tablist" aria-label="Pestañas principales">
+            <button class="tab-button active" data-tab="tab1" role="tab" aria-selected="true">Crear Ordenes de Compra</button>
+            <button class="tab-button" data-tab="tab2" role="tab" aria-selected="false">Ordenes de Compra</button>
+            <button class="tab-button" data-tab="tab3" role="tab" aria-selected="false">Facturación</button>
+            <button class="tab-button" data-tab="tab4" role="tab" aria-selected="false">Observaciones</button>
         </div>
 
         <div class="tab-content">
 
-            <!-- TAB 1 -->
-            <div id="tab1" class="tab-pane active">
-
-                <!-- Sección Periodo -->
-                <div class="form-section periodo-section">
-                    <label class="section-label">Periodo</label>
+            <!-- TAB 1: Crear Ordenes -->
+            <div id="tab1" class="tab-pane active" role="tabpanel">
+                <div class="form-section periodo-section" aria-hidden="false">
+                    <label class="section-label" for="periodoSelect">Periodo</label>
                     <div class="periodo-select-container">
                         <select id="periodoSelect" name="periodoSelect" class="periodo-select" required>
                             <option value="">Seleccione un período</option>
@@ -39,32 +33,30 @@
                     </div>
                 </div>
 
-                <!-- FORMULARIO -->
-                <form id="ordenCompraForm" novalidate autocomplete="off">
+                <form id="ordenCompraForm" novalidate autocomplete="off" aria-label="Formulario orden de compra">
                     <div class="form-grid">
-
-                        <!-- Datos básicos -->
+                        <!-- Fila 2: Orden de Compra, Zona, NIT -->
                         <div class="form-group">
                             <label for="ordenCompra">Orden de Compra</label>
-                            <input type="text" id="ordenCompra" name="ordenCompra" required>
+                            <input type="text" id="ordenCompra" name="ordenCompra" placeholder="Número de orden" required>
                         </div>
 
                         <div class="form-group">
                             <label for="zona">Zona</label>
-                            <input type="text" id="zona" name="zona" required>
+                            <input type="text" id="zona" name="zona" placeholder="Zona asignada" required>
                         </div>
 
                         <div class="form-group">
                             <label for="nit">NIT</label>
-                            <input type="text" id="nit" name="nit" required>
+                            <input type="text" id="nit" name="nit" placeholder="Número de NIT" required>
                         </div>
 
+                        <!-- Fila 3: Territorial, Fecha inicio, Fecha terminacion -->
                         <div class="form-group">
                             <label for="territorial">Territorial</label>
-                            <input type="text" id="territorial" name="territorial" required>
+                            <input type="text" id="territorial" name="territorial" placeholder="Territorial" required>
                         </div>
 
-                        <!-- Fechas -->
                         <div class="form-group">
                             <label for="fechaInicio">Fecha de Inicio</label>
                             <input type="date" id="fechaInicio" name="fechaInicio" required>
@@ -75,66 +67,69 @@
                             <input type="date" id="fechaTerminacion" name="fechaTerminacion" required>
                         </div>
 
-                        <!-- Objeto -->
+                        <!-- Fila 4: Objeto (ancho completo) -->
                         <div class="form-group full-width">
                             <label for="objeto">Objeto</label>
-                            <textarea id="objeto" name="objeto" rows="3" required></textarea>
+                            <textarea id="objeto" name="objeto" rows="3" placeholder="Descripción del objeto de la orden" required></textarea>
                         </div>
 
-                        <!-- Proveedor - Supervisor - Apoyo -->
+                        <!-- Fila 5: Proveedor, Supervisor, Apoyo -->
                         <div class="three-columns full-width">
                             <div class="form-group">
                                 <label for="proveedor">Proveedor</label>
-                                <input type="text" id="proveedor" name="proveedor" required>
+                                <input type="text" id="proveedor" name="proveedor" placeholder="Nombre del proveedor" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="supervisor">Supervisor</label>
-                                <input type="text" id="supervisor" name="supervisor" required>
+                                <input type="text" id="supervisor" name="supervisor" placeholder="Nombre del supervisor" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="apoyoSupervision">Apoyo a la Supervisión</label>
-                                <input type="text" id="apoyoSupervision" name="apoyoSupervision" required>
+                                <input type="text" id="apoyoSupervision" name="apoyoSupervision" placeholder="Personal de apoyo">
                             </div>
                         </div>
 
-                        <!-- Link -->
+                        <!-- Fila 6: Link (full width) -->
                         <div class="form-group full-width">
                             <label for="linkColombiaCompra">Link de Colombia Compra</label>
-                            <input type="url" id="linkColombiaCompra" name="linkColombiaCompra" required>
+                            <input type="url" id="linkColombiaCompra" name="linkColombiaCompra" placeholder="https://..." >
                         </div>
                     </div>
 
                     <!-- Mensaje de estado -->
-                    <div id="estadoEnvio" class="estado-envio"></div>
+                    <div id="estadoEnvio" class="estado-envio" aria-live="polite"></div>
 
+                    <!-- Botones -->
                     <div class="form-actions">
                         <button type="button" id="btnRegistrar" class="btn-registrar">Registrar</button>
                         <button type="button" id="btnLimpiar" class="btn-limpiar-form">Limpiar Formulario</button>
                     </div>
                 </form>
-
             </div>
 
             <!-- TAB 2 -->
-            <div id="tab2" class="tab-pane">
+            <div id="tab2" class="tab-pane" role="tabpanel" aria-hidden="true">
                 <h2>Órdenes de Compra</h2>
-                <p>(En una siguiente fase podemos cargar dinámicamente las órdenes desde SharePoint/Excel)</p>
+                <p>Aquí podrá listarse / buscar las órdenes desde SharePoint (fase 2).</p>
             </div>
 
             <!-- TAB 3 -->
-            <div id="tab3" class="tab-pane">
+            <div id="tab3" class="tab-pane" role="tabpanel" aria-hidden="true">
                 <h2>Facturación</h2>
+                <p>Formulario de facturación - en desarrollo.</p>
             </div>
 
             <!-- TAB 4 -->
-            <div id="tab4" class="tab-pane">
+            <div id="tab4" class="tab-pane" role="tabpanel" aria-hidden="true">
                 <h2>Observaciones</h2>
+                <p>Campo para observaciones - en desarrollo.</p>
             </div>
-
         </div>
     </div>
 
+    <script src="script.js" defer></script>
 </body>
 </html>
+
