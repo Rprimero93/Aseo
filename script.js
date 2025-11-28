@@ -105,26 +105,83 @@ function enhanceUX() {
 }
 
 // ============================
-// FUNCIONES DE ENVIO - CORREGIDAS
+// VALIDACIÓN MEJORADA DEL FORMULARIO
 // ============================
 function validarFormulario(form) {
     let valido = true;
     const requireds = form.querySelectorAll("[required]");
+    
     requireds.forEach(field => {
+        // Validación para campos vacíos o solo espacios
         if (!field.value || !String(field.value).trim()) {
             valido = false;
+            resaltarCampoInvalido(field);
+        }
+        // Validación específica para selects (no puede ser la opción vacía por defecto)
+        else if (field.tagName === 'SELECT' && field.value === '') {
+            valido = false;
+            resaltarCampoInvalido(field);
+        }
+        // Si el campo es válido, quitar resaltado
+        else {
+            quitarResaltadoCampo(field);
         }
     });
+    
     return valido;
 }
 
+// ============================
+// FUNCIONES AUXILIARES DE VALIDACIÓN
+// ============================
+function resaltarCampoInvalido(campo) {
+    campo.style.borderColor = '#dc3545';
+    campo.style.boxShadow = '0 0 0 2px rgba(220, 53, 69, 0.1)';
+    
+    // Agregar tooltip visual si no existe
+    let tooltip = campo.parentNode.querySelector('.error-tooltip');
+    if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.className = 'error-tooltip';
+        tooltip.style.color = '#dc3545';
+        tooltip.style.fontSize = '12px';
+        tooltip.style.marginTop = '4px';
+        tooltip.innerText = 'Este campo es obligatorio';
+        campo.parentNode.appendChild(tooltip);
+    }
+}
+
+function quitarResaltadoCampo(campo) {
+    campo.style.borderColor = '';
+    campo.style.boxShadow = '';
+    
+    // Remover tooltip si existe
+    const tooltip = campo.parentNode.querySelector('.error-tooltip');
+    if (tooltip) {
+        tooltip.remove();
+    }
+}
+
+// ============================
+// FUNCIONES DE ENVIO - CORREGIDAS
+// ============================
 async function handleEnviar(form, boton) {
     const estado = document.getElementById("estadoEnvio");
 
-    // Validación básica
+    // Limpiar resaltados previos
+    form.querySelectorAll('[required]').forEach(quitarResaltadoCampo);
+
+    // Validación mejorada
     if (!validarFormulario(form)) {
-        estado.innerText = "❌ Por favor complete todos los campos obligatorios.";
+        estado.innerText = "❌ Por favor complete todos los campos obligatorios correctamente.";
         estado.className = "estado-envio error";
+        
+        // Scroll al primer campo inválido
+        const primerInvalido = form.querySelector('[required]:invalid, [required][style*="border-color: #dc3545"]');
+        if (primerInvalido) {
+            primerInvalido.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            primerInvalido.focus();
+        }
         return;
     }
 
@@ -191,3 +248,4 @@ async function handleEnviar(form, boton) {
         boton.innerText = originalText;
     }
 }
+

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Matriz de Aseo - Órdenes de Compra</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -54,7 +55,25 @@
                         <!-- Fila 3: Territorial, Fecha inicio, Fecha terminacion -->
                         <div class="form-group">
                             <label for="territorial">Territorial</label>
-                            <input type="text" id="territorial" name="territorial" placeholder="Territorial" required>
+                            <select id="territorial" name="territorial" required>
+                                <option value="">Seleccione una territorial</option>
+                                <option value="Antioquia">Antioquia</option>
+                                <option value="Atlántico">Atlántico</option>
+                                <option value="Bogotá">Bogotá</option>
+                                <option value="Bolívar">Bolívar</option>
+                                <option value="Boyacá">Boyacá</option>
+                                <option value="Caldas">Caldas</option>
+                                <option value="Cauca">Cauca</option>
+                                <option value="Chocó">Chocó</option>
+                                <option value="Cundinamarca">Cundinamarca</option>
+                                <option value="Huila">Huila</option>
+                                <option value="Meta">Meta</option>
+                                <option value="Nariño">Nariño</option>
+                                <option value="Norte de Santander">Norte de Santander</option>
+                                <option value="Risaralda">Risaralda</option>
+                                <option value="Santander">Santander</option>
+                                <option value="Tolima">Tolima</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -111,8 +130,8 @@
 
             <!-- TAB 2 -->
             <div id="tab2" class="tab-pane" role="tabpanel" aria-hidden="true">
-                <h2>Órdenes de Compra</h2>
-                <p>Aquí podrá listarse / buscar las órdenes desde SharePoint (fase 2).</p>
+                <h2>Ordenes de compra</h2>
+                <p>Formulario Edicion O.C - en desarrollo.</p>
             </div>
 
             <!-- TAB 3 -->
@@ -129,7 +148,6 @@
         </div>
     </div>
 
-    <script src="script.js" defer></script>
+
 </body>
 </html>
-
