@@ -128,13 +128,13 @@ async function handleEnviar(form, boton) {
         return;
     }
 
-    // ✅ PAYLOAD CORREGIDO - Nombres exactos del JSON Schema
+    // ✅ PAYLOAD CORREGIDO
     const payload = {
         "ordenCompra": document.getElementById("ordenCompra").value,
         "zona": document.getElementById("zona").value,
         "nit": document.getElementById("nit").value,
         "territorial": document.getElementById("territorial").value,
-        "fechainicio": document.getElementById("fechaInicio").value, // ⚠️ Nota: 'fechainicio' en minúscula
+        "fechainicio": document.getElementById("fechaInicio").value,
         "fechaTerminacion": document.getElementById("fechaTerminacion").value,
         "objeto": document.getElementById("objeto").value,
         "proveedor": document.getElementById("proveedor").value,
@@ -144,7 +144,7 @@ async function handleEnviar(form, boton) {
         "periodoSelect": document.getElementById("periodoSelect").value
     };
 
-    console.log("Enviando payload:", payload); // Para debug
+    console.log("Enviando payload:", payload);
 
     // Mostrar cargando y deshabilitar botón
     boton.disabled = true;
@@ -167,8 +167,16 @@ async function handleEnviar(form, boton) {
             throw new Error(`HTTP ${resp.status}: ${errorText}`);
         }
 
-        const result = await resp.json();
-        console.log("✅ Respuesta exitosa:", result);
+        // ✅ MANEJO MEJORADO DE RESPUESTA
+        let result;
+        try {
+            const responseText = await resp.text();
+            result = responseText ? JSON.parse(responseText) : { success: true, message: "Empty response" };
+        } catch (parseError) {
+            result = { success: true, message: "Non-JSON response received" };
+        }
+
+        console.log("✅ Respuesta del servidor:", result);
         
         estado.innerText = "✔ Registro enviado correctamente.";
         estado.className = "estado-envio exito";
