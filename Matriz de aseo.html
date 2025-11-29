@@ -14,7 +14,7 @@
         <!-- Pestañas -->
         <div class="tabs" role="tablist" aria-label="Pestañas principales">
             <button class="tab-button active" data-tab="tab1" role="tab" aria-selected="true">Crear Ordenes de Compra</button>
-            <button class="tab-button" data-tab="tab2" role="tab" aria-selected="false">Ordenes de Compra</button>
+            <button class="tab-button" data-tab="tab2" role="tab" aria-selected="false">Ordenes de compra</button>
             <button class="tab-button" data-tab="tab3" role="tab" aria-selected="false">Facturación</button>
             <button class="tab-button" data-tab="tab4" role="tab" aria-selected="false">Observaciones</button>
         </div>
@@ -128,10 +128,121 @@
                 </form>
             </div>
 
-            <!-- TAB 2 -->
+            <!-- TAB 2: EDICIÓN Y ELIMINACIÓN -->
             <div id="tab2" class="tab-pane" role="tabpanel" aria-hidden="true">
-                <h2>Ordenes de compra</h2>
-                <p>Formulario Edicion O.C - en desarrollo.</p>
+                <div class="form-section periodo-section-tab2" aria-hidden="false">
+                    <label class="section-label" for="periodoSelectTab2">Periodo</label>
+                    <div class="periodo-select-container">
+                        <select id="periodoSelectTab2" name="periodoSelectTab2" class="periodo-select" required>
+                            <option value="">Seleccione un período</option>
+                            <option value="2024-2025">2024-2025</option>
+                            <option value="2025-2026">2025-2026</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section orden-section-tab2" aria-hidden="false">
+                    <label class="section-label" for="ordenCompraSelectTab2">Orden de Compra</label>
+                    <div class="orden-select-container">
+                        <select id="ordenCompraSelectTab2" name="ordenCompraSelectTab2" class="orden-select" required disabled>
+                            <option value="">Primero selecciona un período</option>
+                        </select>
+                    </div>
+                </div>
+
+                <form id="formularioEdicionTab2" novalidate autocomplete="off" aria-label="Formulario edición orden de compra">
+                    <div class="form-grid">
+                            <!-- Fila 1: Orden de Compra, Zona, NIT -->
+                            <div class="form-group">
+                                <label for="edicionOrdenCompra">Orden de Compra</label>
+                                <input type="text" id="edicionOrdenCompra" name="edicionOrdenCompra" placeholder="Número de orden" required readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edicionZona">Zona</label>
+                                <input type="text" id="edicionZona" name="edicionZona" placeholder="Zona asignada" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edicionNit">NIT</label>
+                                <input type="text" id="edicionNit" name="edicionNit" placeholder="Número de NIT" required>
+                            </div>
+
+                            <!-- Fila 2: Territorial, Fecha inicio, Fecha terminacion -->
+                            <div class="form-group">
+                                <label for="edicionTerritorial">Territorial</label>
+                                <select id="edicionTerritorial" name="edicionTerritorial" required>
+                                    <option value="">Seleccione una territorial</option>
+                                    <option value="Antioquia">Antioquia</option>
+                                    <option value="Atlántico">Atlántico</option>
+                                    <option value="Bogotá">Bogotá</option>
+                                    <option value="Bolívar">Bolívar</option>
+                                    <option value="Boyacá">Boyacá</option>
+                                    <option value="Caldas">Caldas</option>
+                                    <option value="Cauca">Cauca</option>
+                                    <option value="Chocó">Chocó</option>
+                                    <option value="Cundinamarca">Cundinamarca</option>
+                                    <option value="Huila">Huila</option>
+                                    <option value="Meta">Meta</option>
+                                    <option value="Nariño">Nariño</option>
+                                    <option value="Norte de Santander">Norte de Santander</option>
+                                    <option value="Risaralda">Risaralda</option>
+                                    <option value="Santander">Santander</option>
+                                    <option value="Tolima">Tolima</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edicionFechaInicio">Fecha de Inicio</label>
+                                <input type="date" id="edicionFechaInicio" name="edicionFechaInicio" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edicionFechaTerminacion">Fecha de Terminación</label>
+                                <input type="date" id="edicionFechaTerminacion" name="edicionFechaTerminacion" required>
+                            </div>
+
+                            <!-- Fila 3: Objeto (ancho completo) -->
+                            <div class="form-group full-width">
+                                <label for="edicionObjeto">Objeto</label>
+                                <textarea id="edicionObjeto" name="edicionObjeto" rows="3" placeholder="Descripción del objeto de la orden" required></textarea>
+                            </div>
+
+                            <!-- Fila 4: Proveedor, Supervisor, Apoyo -->
+                            <div class="three-columns full-width">
+                                <div class="form-group">
+                                    <label for="edicionProveedor">Proveedor</label>
+                                    <input type="text" id="edicionProveedor" name="edicionProveedor" placeholder="Nombre del proveedor" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="edicionSupervisor">Supervisor</label>
+                                    <input type="text" id="edicionSupervisor" name="edicionSupervisor" placeholder="Nombre del supervisor" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="edicionApoyoSupervision">Apoyo a la Supervisión</label>
+                                    <input type="text" id="edicionApoyoSupervision" name="edicionApoyoSupervision" placeholder="Personal de apoyo">
+                                </div>
+                            </div>
+
+                            <!-- Fila 5: Link (full width) -->
+                            <div class="form-group full-width">
+                                <label for="edicionLinkColombiaCompra">Link de Colombia Compra</label>
+                                <input type="url" id="edicionLinkColombiaCompra" name="edicionLinkColombiaCompra" placeholder="https://...">
+                            </div>
+                        </div>
+
+                        <!-- Mensaje de estado -->
+                        <div id="estadoTab2" class="estado-envio" aria-live="polite"></div>
+
+                        <!-- Botones -->
+                        <div class="form-actions">
+                            <button type="button" id="btnActualizar" class="btn-registrar" disabled>Actualizar</button>
+                            <button type="button" id="btnEliminar" class="btn-eliminar-tab2" disabled>Eliminar</button>
+                            <button type="button" id="btnLimpiarTab2" class="btn-limpiar-form">Limpiar Formulario</button>
+                        </div>
+                    </form>
             </div>
 
             <!-- TAB 3 -->
@@ -147,7 +258,6 @@
             </div>
         </div>
     </div>
-
 
 </body>
 </html>

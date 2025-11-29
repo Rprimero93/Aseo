@@ -305,3 +305,221 @@ h2 {
     border: 1px solid #f5c6cb;
     color: #721c24;
 }
+
+/* ===========================
+   TAB 2 - SECCIONES DE FILTRO
+   =========================== */
+
+/* Sección de período en Tab 2 */
+.periodo-section-tab2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: #fbfcfd;
+    border-radius: 6px;
+    flex-wrap: wrap;
+}
+
+.periodo-section-tab2 .section-label {
+    display: block;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0;
+}
+
+.periodo-select-container {
+    flex: 1;
+    min-width: 260px;
+}
+
+.periodo-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d9e2ea;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.12s ease-in-out, box-shadow 0.12s ease-in-out;
+}
+
+.periodo-select:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 4px rgba(26,115,232,0.06);
+}
+
+/* Sección de orden en Tab 2 */
+.orden-section-tab2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: #fbfcfd;
+    border-radius: 6px;
+    flex-wrap: wrap;
+}
+
+.orden-section-tab2 .section-label {
+    display: block;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0;
+}
+
+.orden-select-container {
+    flex: 1;
+    min-width: 260px;
+}
+
+.orden-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d9e2ea;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.12s ease-in-out, box-shadow 0.12s ease-in-out;
+}
+
+.orden-select:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 4px rgba(26,115,232,0.06);
+}
+
+.orden-select:disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* ===========================
+   CAMPOS DEL FORMULARIO TAB 2
+   =========================== */
+
+/* Inputs deshabilitados visualmente */
+#formularioEdicionTab2 input:disabled,
+#formularioEdicionTab2 textarea:disabled,
+#formularioEdicionTab2 select:disabled {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
+    border-color: #e9ecef;
+}
+
+#formularioEdicionTab2 input:disabled::placeholder,
+#formularioEdicionTab2 textarea:disabled::placeholder {
+    color: #adb5bd;
+}
+
+/* Inputs habilitados */
+#formularioEdicionTab2 input:enabled,
+#formularioEdicionTab2 textarea:enabled,
+#formularioEdicionTab2 select:enabled {
+    background-color: #fff;
+    border-color: #d1dce6;
+}
+
+#formularioEdicionTab2 input:enabled:focus,
+#formularioEdicionTab2 textarea:enabled:focus,
+#formularioEdicionTab2 select:enabled:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 4px rgba(26,115,232,0.06);
+}
+
+/* Orden de compra es read-only */
+#edicionOrdenCompra {
+    background-color: #f8f9fa;
+    color: #495057;
+    cursor: not-allowed;
+}
+
+/* ===========================
+   BOTONES TAB 2
+   =========================== */
+
+.btn-eliminar-tab2 {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.18s ease;
+    font-weight: 600;
+    background-color: #dc3545;
+    color: white;
+    min-width: 110px;
+}
+
+.btn-eliminar-tab2:hover:not(:disabled) {
+    background-color: #c82333;
+}
+
+.btn-eliminar-tab2:disabled {
+    background-color: #d6d8db;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Botones deshabilitados */
+.btn-registrar:disabled,
+.btn-limpiar-form:disabled {
+    background-color: #d6d8db;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-registrar:disabled:hover,
+.btn-limpiar-form:disabled:hover,
+.btn-eliminar-tab2:disabled:hover {
+    background-color: inherit;
+}
+
+/* ===========================
+   RESPONSIVE - TAB 2
+   =========================== */
+
+@media (max-width: 900px) {
+    .periodo-section-tab2,
+    .orden-section-tab2 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .periodo-section-tab2 .section-label,
+    .orden-section-tab2 .section-label {
+        margin-bottom: 8px;
+    }
+
+    .periodo-select-container,
+    .orden-select-container {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .periodo-section-tab2,
+    .orden-section-tab2 {
+        padding: 10px;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .periodo-select-container,
+    .orden-select-container {
+        width: 100%;
+    }
+
+    .periodo-select,
+    .orden-select {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
